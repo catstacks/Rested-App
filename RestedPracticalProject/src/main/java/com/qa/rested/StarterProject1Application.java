@@ -11,3 +11,5 @@ public class StarterProject1Application {
 	}
 
 }
+
+// A comment to test the 'test' branch works 

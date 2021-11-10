@@ -5,11 +5,11 @@ public class RestedUser {
 	private Long id;
 	private String firstName;
 	private String lastName;
-	private int age;
+	private Integer age;
 	private String email;
 	
 	
-	public RestedUser(Long id, String firstName, String lastName, int age, String email) {
+	public RestedUser(Long id, String firstName, String lastName, Integer age, String email) {
 		super();
 		this.id = id;
 		this.firstName = firstName;

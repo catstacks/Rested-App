@@ -1,12 +1,15 @@
 package com.qa.rested.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+@Entity(name = "RestedUser")
 public class RestedUser {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String firstName;
 	private String lastName;
@@ -22,7 +25,10 @@ public class RestedUser {
 		this.age = age;
 		this.email = email;
 	}
-
+	
+	public RestedUser() {
+		super();
+	}
 
 	public Long getId() {
 		return id;

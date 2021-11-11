@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.qa.rested.domain.RestedUser;
 
 @Repository
-public interface RestedRepo extends JpaRepository<RestedUser, Integer>{
+public interface RestedRepo extends JpaRepository<RestedUser, Long>{
 
 }

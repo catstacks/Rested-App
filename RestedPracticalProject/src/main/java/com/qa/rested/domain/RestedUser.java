@@ -1,7 +1,12 @@
 package com.qa.rested.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class RestedUser {
 	
+	@Id
 	private Long id;
 	private String firstName;
 	private String lastName;

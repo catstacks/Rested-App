@@ -20,7 +20,7 @@ public class LoginController extends AbstractController {
             @RequestBody final Map<String, Object> payload,
             final HttpServletResponse response
     ) throws ServletException, IOException {
-        // Validate inputs
+        
         final LoginResponse loginResponse = new LoginResponse();
         if (payload.get("username") == null || !(payload.get("username") instanceof String)
                 || payload.get("password") == null || !(payload.get("password") instanceof String)) {
@@ -29,4 +29,5 @@ public class LoginController extends AbstractController {
             return loginResponse;
         }
 
+	}
 }

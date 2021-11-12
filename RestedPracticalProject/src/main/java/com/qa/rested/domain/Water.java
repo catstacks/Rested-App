@@ -73,7 +73,12 @@ public class Water {
     @Column(name = "serving_size_amount", nullable = false)
     private Double servingSizeAmount;
 
-	public Water(UUID id, RestedUser user, String name, ServingSize defaultServing, Double servingSizeAmount) {
+	public Water(
+			final UUID id,
+			final RestedUser user,
+			final String name,
+			final ServingSize defaultServing,
+			final Double servingSizeAmount) {
 		this.id = Optional.ofNullable(id).orElse(UUID.randomUUID());
 		this.user = user;
 		this.name = name;

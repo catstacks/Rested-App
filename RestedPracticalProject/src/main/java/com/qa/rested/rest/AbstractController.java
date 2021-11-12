@@ -1,7 +1,7 @@
 package com.qa.rested.rest;
 
 import com.qa.rested.dto.RestedDTO;
-import com.qa.rested.service.RestedService;
+import com.qa.rested.service.RestedUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +21,7 @@ public abstract class AbstractController {
     final DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
     @Autowired
-    RestedService restedService;
+    RestedUserService restedService;
 
     /**
      * Used by child class controllers to obtain the currently authenticated user from Spring Security.

@@ -23,10 +23,6 @@ public abstract class AbstractController {
     @Autowired
     RestedUserService restedService;
 
-    /**
-     * Used by child class controllers to obtain the currently authenticated user from Spring Security.
-     */
-
     final RestedDTO currentAuthenticatedUser(final HttpServletRequest request) {
         return restedService.findByEmail((String) request.getAttribute("email"));
     }

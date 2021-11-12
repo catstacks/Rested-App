@@ -17,7 +17,7 @@ public interface RestedUserService {
 
 	boolean removeUser(Integer id);
 
-	public RestedDTO findByEmail(String attribute);
+	RestedDTO findByEmail(String attribute);
 	}
 
 

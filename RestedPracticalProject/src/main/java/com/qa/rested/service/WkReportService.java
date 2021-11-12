@@ -6,10 +6,18 @@ import java.util.UUID;
 import com.qa.rested.domain.WeeklyReportData;
 
 public class WkReportService {
+	
+	
 
 	public List<WeeklyReportData> findByUser(UUID id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
+	public WeeklyReportData getReport(Integer id) {
+		return null;
+	}
 }
+	
+
+
+

@@ -55,7 +55,7 @@ public class RestedUser {
     private Timestamp lastUpdatedTime;
 	
     @OneToMany(mappedBy = "user")
-    private Set<Sleep> sleep = new HashSet<>();
+    private Set<DailySleep> sleep = new HashSet<>();
 
     @OneToMany(mappedBy = "user")
     private Set<Water> water = new HashSet<>();
@@ -186,11 +186,11 @@ public class RestedUser {
 		this.lastUpdatedTime = lastUpdatedTime;
 	}
 
-	public Set<Sleep> getSleep() {
+	public Set<DailySleep> getSleep() {
 		return sleep;
 	}
 
-	public void setSleep(Set<Sleep> sleep) {
+	public void setSleep(Set<DailySleep> sleep) {
 		this.sleep = sleep;
 	}
 

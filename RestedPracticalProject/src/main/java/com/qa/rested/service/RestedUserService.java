@@ -1,12 +1,23 @@
 package com.qa.rested.service;
 
+import java.util.List;
+
+import com.qa.rested.domain.RestedUser;
 import com.qa.rested.dto.RestedDTO;
 
-public class RestedUserService {
+public interface RestedUserService {
+	
+	RestedUser createUser(RestedUser newUser);
 
-	public RestedDTO findByEmail(String attribute) {
-		// TODO Auto-generated method stub
-		return null;
+	List<RestedUser> getUsers();
+
+	RestedUser getUser(Integer id);
+
+	RestedUser replaceUser(Integer id, RestedUser newUser);
+
+	boolean removeUser(Integer id);
+
+	public RestedDTO findByEmail(String attribute);
 	}
 
-}
+

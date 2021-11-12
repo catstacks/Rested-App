@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Entity
-@Table(name = "daily_sleep", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "sleep_id", "date"})
+@Table(name = "daily_sleep", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "journal_id", "date"})
 )
 public class DailySleep {
 	
@@ -25,8 +25,8 @@ public class DailySleep {
     private RestedUser user;
 
     @ManyToOne
-    @JoinColumn(name = "sleep_id", nullable = false)
-    private Sleep sleep;
+    @JoinColumn(name = "journal_id", nullable = false)
+    private DreamJournal dreamjournal;
 
     @Column(name = "date", nullable = false)
     private Date date;
@@ -40,14 +40,14 @@ public class DailySleep {
 	public DailySleep(
 			final UUID id,
 			final RestedUser user,
-			final Sleep sleep,
+			final DreamJournal dreamjournal,
 			final Date date,
 			final Integer hours,
 			final Integer minutes) {
 		
 		this.id = Optional.ofNullable(id).orElse(UUID.randomUUID());
 		this.user = user;
-		this.sleep = sleep;
+		this.dreamjournal = dreamjournal;
 		this.date = (Date) date.clone();
 		this.hours = hours;
 		this.minutes = minutes;
@@ -72,12 +72,12 @@ public class DailySleep {
 		this.user = user;
 	}
 
-	public Sleep getSleep() {
-		return sleep;
+	public DreamJournal getDreamJournal() {
+		return dreamjournal;
 	}
 
-	public void setSleep(Sleep sleep) {
-		this.sleep = sleep;
+	public void setDreamJournal(DreamJournal dreamjournal) {
+		this.dreamjournal = dreamjournal;
 	}
 
 	public Date getDate() {

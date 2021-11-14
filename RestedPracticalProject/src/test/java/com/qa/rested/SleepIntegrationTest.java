@@ -25,8 +25,8 @@ import com.qa.rested.domain.DailySleep;
 
 @SpringBootTest 
 @AutoConfigureMockMvc 
-@Sql(scripts = { "classpath:user-schema.sql",
-		"classpath:user-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(scripts = { "classpath:sleep-schema.sql",
+		"classpath:sleep-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 
 @ActiveProfiles("test") 
 public class SleepIntegrationTest {
@@ -42,7 +42,7 @@ public class SleepIntegrationTest {
 		DailySleep requestBody = new DailySleep();
 		String requestBodyAsJSON = this.mapper.writeValueAsString(requestBody);
 
-		RequestBuilder request = post("/user/addSleep").contentType(MediaType.APPLICATION_JSON)
+		RequestBuilder request = post("/sleep/addSleep").contentType(MediaType.APPLICATION_JSON)
 				.content(requestBodyAsJSON);
 
 		DailySleep responseBody = new DailySleep();
@@ -56,13 +56,13 @@ public class SleepIntegrationTest {
 
 	@Test
 	void testSleepNotFound() throws Exception {
-		this.mvc.perform(get("/user/getSleep/9999999")).andExpect(status().isNotFound());
+		this.mvc.perform(get("/sleep/getSleep/9999999")).andExpect(status().isNotFound());
 	}
 
 	@Test
 	void testGetSleep() throws Exception {
 		final String responseBody = this.mapper.writeValueAsString(new DailySleep());
-		this.mvc.perform(get("/users/getSleep/1")).andExpect(status().isOk()).andExpect((ResultMatcher) content().json(responseBody));
+		this.mvc.perform(get("/sleeps/getSleep/1")).andExpect(status().isOk()).andExpect((ResultMatcher) content().json(responseBody));
 	}
 	
 	@Test
@@ -81,7 +81,7 @@ public class SleepIntegrationTest {
 
 	@Test
 	void testDeleteSleep() throws Exception {
-		this.mvc.perform(delete("/user/removeSleep/1")).andExpect(status().isNoContent());
+		this.mvc.perform(delete("/sleep/removeSleep/1")).andExpect(status().isNoContent());
 	}
 
 }

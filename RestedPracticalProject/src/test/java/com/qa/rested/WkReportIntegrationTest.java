@@ -24,6 +24,8 @@ import org.springframework.test.web.servlet.ResultMatcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.rested.domain.RestedUser;
+import com.qa.rested.domain.WeeklyReportData;
+import com.qa.rested.domain.Report;
 
 @SpringBootTest 
 @AutoConfigureMockMvc 
@@ -40,14 +42,14 @@ public class WkReportIntegrationTest {
 	private ObjectMapper mapper;
 
 	@Test
-	void testAddUser() throws Exception {
-		RestedUser requestBody = new RestedUser(1, "1999-01-01", 22, 1, "test.user@domain", "password", "test", "user");
+	void testAddReport() throws Exception {
+		WeeklyReportData requestBody = new WeeklyReportData();
 		String requestBodyAsJSON = this.mapper.writeValueAsString(requestBody);
 
-		RequestBuilder request = post("/user/addUser").contentType(MediaType.APPLICATION_JSON)
+		RequestBuilder request = post("/report/addReport").contentType(MediaType.APPLICATION_JSON)
 				.content(requestBodyAsJSON);
 
-		RestedUser responseBody = new RestedUser(2, "1989-01-01", 32, 3, "bob.user@domain", "password", "bob", "user");
+		WeeklyReportData responseBody = new WeeklyReportData();
 		String responseBodyAsJSON = this.mapper.writeValueAsString(responseBody);
 
 		ResultMatcher checkStatus = status().isCreated();
@@ -57,20 +59,33 @@ public class WkReportIntegrationTest {
 	}
 
 	@Test
-	void testRestedUserNotFound() throws Exception {
-		this.mvc.perform(get("/user/getUser/9999999")).andExpect(status().isNotFound());
+	void testReportNotFound() throws Exception {
+		this.mvc.perform(get("/report/getReport/9999999")).andExpect(status().isNotFound());
 	}
 
 	@Test
-	void testGetUser() throws Exception {
-		final String responseBody = this.mapper.writeValueAsString(new RestedUser(1, "1999-01-01", 22, 1, "test.user@domain", "password", "test", "user"));
-		this.mvc.perform(get("/users/getUser/1")).andExpect(status().isOk()).andExpect((ResultMatcher) content().json(responseBody));
+	void testGetReport() throws Exception {
+		final String responseBody = this.mapper.writeValueAsString(new WeeklyReportData());
+		this.mvc.perform(get("/reports/getReport/1")).andExpect(status().isOk()).andExpect((ResultMatcher) content().json(responseBody));
+	}
+	
+	@Test
+	void testReplaceReport() throws Exception {
+		final String responseBody = this.mapper.writeValueAsString(new WeeklyReportData());
+
+		RequestBuilder request = put("/report/replaceReport/1").contentType(MediaType.APPLICATION_JSON).content(responseBody);
+
+		ResultMatcher checkStatus = status().isAccepted();
+		ResultMatcher checkBody = (ResultMatcher) content().json(responseBody);
+
+		this.mvc.perform(request).andExpect(checkStatus).andExpect(checkBody);
 	}
 
 
+
 	@Test
-	void testDelete() throws Exception {
-		this.mvc.perform(delete("/user/removeUser/1")).andExpect(status().isNoContent());
+	void testDeleteReport() throws Exception {
+		this.mvc.perform(delete("/report/removeReport/1")).andExpect(status().isNoContent());
 	}
 
 }

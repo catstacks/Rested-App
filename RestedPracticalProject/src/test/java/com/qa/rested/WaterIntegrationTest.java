@@ -7,8 +7,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -23,12 +21,12 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qa.rested.domain.RestedUser;
+import com.qa.rested.domain.Water;
 
 @SpringBootTest 
 @AutoConfigureMockMvc 
-@Sql(scripts = { "classpath:user-schema.sql",
-		"classpath:user-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(scripts = { "classpath:water-schema.sql",
+		"classpath:water-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 
 @ActiveProfiles("test") 
 public class WaterIntegrationTest {
@@ -40,14 +38,14 @@ public class WaterIntegrationTest {
 	private ObjectMapper mapper;
 
 	@Test
-	void testAddUser() throws Exception {
-		RestedUser requestBody = new RestedUser(1, "1999-01-01", 22, 1, "test.user@domain", "password", "test", "user");
+	void testAddWater() throws Exception {
+		Water requestBody = new Water();
 		String requestBodyAsJSON = this.mapper.writeValueAsString(requestBody);
 
-		RequestBuilder request = post("/user/addUser").contentType(MediaType.APPLICATION_JSON)
+		RequestBuilder request = post("/water/addWater").contentType(MediaType.APPLICATION_JSON)
 				.content(requestBodyAsJSON);
 
-		RestedUser responseBody = new RestedUser(2, "1989-01-01", 32, 3, "bob.user@domain", "password", "bob", "user");
+		Water responseBody = new Water();
 		String responseBodyAsJSON = this.mapper.writeValueAsString(responseBody);
 
 		ResultMatcher checkStatus = status().isCreated();
@@ -57,20 +55,32 @@ public class WaterIntegrationTest {
 	}
 
 	@Test
-	void testRestedUserNotFound() throws Exception {
-		this.mvc.perform(get("/user/getUser/9999999")).andExpect(status().isNotFound());
+	void testWaterNotFound() throws Exception {
+		this.mvc.perform(get("/water/getWater/9999999")).andExpect(status().isNotFound());
 	}
 
 	@Test
-	void testGetUser() throws Exception {
-		final String responseBody = this.mapper.writeValueAsString(new RestedUser(1, "1999-01-01", 22, 1, "test.user@domain", "password", "test", "user"));
-		this.mvc.perform(get("/users/getUser/1")).andExpect(status().isOk()).andExpect((ResultMatcher) content().json(responseBody));
+	void testGetWater() throws Exception {
+		final String responseBody = this.mapper.writeValueAsString(new Water());
+		this.mvc.perform(get("/waters/getWater/1")).andExpect(status().isOk()).andExpect((ResultMatcher) content().json(responseBody));
 	}
+	
+	@Test
+	void testReplaceWater() throws Exception {
+		final String responseBody = this.mapper.writeValueAsString(new Water());
+
+		RequestBuilder request = put("/water/replaceWater/1").contentType(MediaType.APPLICATION_JSON).content(responseBody);
+
+		ResultMatcher checkStatus = status().isAccepted();
+		ResultMatcher checkBody = (ResultMatcher) content().json(responseBody);
+
+		this.mvc.perform(request).andExpect(checkStatus).andExpect(checkBody);
+	}
+
 
 
 	@Test
-	void testDelete() throws Exception {
-		this.mvc.perform(delete("/user/removeUser/1")).andExpect(status().isNoContent());
+	void testDeleteWater() throws Exception {
+		this.mvc.perform(delete("/water/removeWater/1")).andExpect(status().isNoContent());
 	}
-
 }

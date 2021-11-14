@@ -7,8 +7,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -23,12 +21,12 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qa.rested.domain.RestedUser;
+import com.qa.rested.domain.ScreenTime;
 
 @SpringBootTest 
 @AutoConfigureMockMvc 
-@Sql(scripts = { "classpath:user-schema.sql",
-		"classpath:user-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(scripts = { "classpath:screen-schema.sql",
+		"classpath:screen-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 
 @ActiveProfiles("test") 
 public class ScreenTimeIntegrationTest {
@@ -40,14 +38,14 @@ public class ScreenTimeIntegrationTest {
 	private ObjectMapper mapper;
 
 	@Test
-	void testAddUser() throws Exception {
-		RestedUser requestBody = new RestedUser(1, "1999-01-01", 22, 1, "test.user@domain", "password", "test", "user");
+	void testAddScreen() throws Exception {
+		ScreenTime requestBody = new ScreenTime();
 		String requestBodyAsJSON = this.mapper.writeValueAsString(requestBody);
 
-		RequestBuilder request = post("/user/addUser").contentType(MediaType.APPLICATION_JSON)
+		RequestBuilder request = post("/screen/addScreen").contentType(MediaType.APPLICATION_JSON)
 				.content(requestBodyAsJSON);
 
-		RestedUser responseBody = new RestedUser(2, "1989-01-01", 32, 3, "bob.user@domain", "password", "bob", "user");
+		ScreenTime responseBody = new ScreenTime();
 		String responseBodyAsJSON = this.mapper.writeValueAsString(responseBody);
 
 		ResultMatcher checkStatus = status().isCreated();
@@ -57,20 +55,32 @@ public class ScreenTimeIntegrationTest {
 	}
 
 	@Test
-	void testRestedUserNotFound() throws Exception {
-		this.mvc.perform(get("/user/getUser/9999999")).andExpect(status().isNotFound());
+	void testScreenNotFound() throws Exception {
+		this.mvc.perform(get("/screen/getScreen/9999999")).andExpect(status().isNotFound());
 	}
 
 	@Test
-	void testGetUser() throws Exception {
-		final String responseBody = this.mapper.writeValueAsString(new RestedUser(1, "1999-01-01", 22, 1, "test.user@domain", "password", "test", "user"));
-		this.mvc.perform(get("/users/getUser/1")).andExpect(status().isOk()).andExpect((ResultMatcher) content().json(responseBody));
+	void testGetScreen() throws Exception {
+		final String responseBody = this.mapper.writeValueAsString(new ScreenTime());
+		this.mvc.perform(get("/screens/getScreen/1")).andExpect(status().isOk()).andExpect((ResultMatcher) content().json(responseBody));
 	}
+	
+	@Test
+	void testReplaceScreen() throws Exception {
+		final String responseBody = this.mapper.writeValueAsString(new ScreenTime());
+
+		RequestBuilder request = put("/screen/replaceScreen/1").contentType(MediaType.APPLICATION_JSON).content(responseBody);
+
+		ResultMatcher checkStatus = status().isAccepted();
+		ResultMatcher checkBody = (ResultMatcher) content().json(responseBody);
+
+		this.mvc.perform(request).andExpect(checkStatus).andExpect(checkBody);
+	}
+
 
 
 	@Test
-	void testDelete() throws Exception {
-		this.mvc.perform(delete("/user/removeUser/1")).andExpect(status().isNoContent());
+	void testDeleteScreen() throws Exception {
+		this.mvc.perform(delete("/screen/removeScreen/1")).andExpect(status().isNoContent());
 	}
-
 }

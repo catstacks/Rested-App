@@ -3,6 +3,7 @@ package com.qa.rested.rest;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,7 +35,8 @@ public class WaterController {
 	}
 	
 	private WaterService service;
-
+	
+	@Autowired
 	public WaterController(WaterService service) {
 		super();
 		this.service = service;

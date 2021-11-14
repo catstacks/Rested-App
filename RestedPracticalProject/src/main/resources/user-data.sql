@@ -1,4 +1,4 @@
-INSERT INTO `rested_users` 
+INSERT INTO `RESTED_USER` 
 (`dob`, `age`, `sleep_quality`, `email`, `password`, `first_name`, `last_name`)
 
  

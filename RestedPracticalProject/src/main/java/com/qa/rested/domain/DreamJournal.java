@@ -2,18 +2,19 @@ package com.qa.rested.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Optional;
-import java.util.UUID;
 
 @Entity
 @Table(name = "journal")
 public final class DreamJournal {
 
     @Id
-    @Column(name = "id", columnDefinition = "BINARY(16)")
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
 
     @Column(name = "sleep_rating", length = 2, nullable = false)
     private Integer sleepRating;
@@ -22,11 +23,11 @@ public final class DreamJournal {
     private String description;
 
     public DreamJournal(
-            final UUID id,
+            final Integer id,
             final Integer sleepRating,           
             final String description
     ) {
-        this.id = Optional.ofNullable(id).orElse(UUID.randomUUID());
+        this.id = id;
         this.sleepRating = sleepRating; 
         this.description = description;
     }
@@ -35,11 +36,11 @@ public final class DreamJournal {
     }
 
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(final UUID id) {
+    public void setId(final Integer id) {
         this.id = id;
     }
 

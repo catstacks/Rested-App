@@ -1,13 +1,13 @@
 package com.qa.rested.domain;
 
 import java.sql.Date;
-import java.util.Optional;
-import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,8 +22,9 @@ import com.qa.rested.domain.Water.ServingSize;
 public class WaterConsumed {
 	
 	@Id
-    @Column(name = "id", columnDefinition = "BINARY(16)")
-    private UUID id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -44,14 +45,14 @@ public class WaterConsumed {
     private Double servingAmount;
 
 	public WaterConsumed(
-			final UUID id,
+			final Integer id,
 			final RestedUser user,
 			final Water water,
 			final Date date,
 			final ServingSize servingType,
 			final Double servingAmount) {
 		
-		this.id = Optional.ofNullable(id).orElse(UUID.randomUUID());
+		this.id = id;
 		this.user = user;
 		this.water = water;
 		this.date = (Date) date.clone();
@@ -62,11 +63,11 @@ public class WaterConsumed {
 	public WaterConsumed() {
     }
 
-	public UUID getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

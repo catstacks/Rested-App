@@ -1,11 +1,8 @@
 package com.qa.rested.domain;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
-import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,9 +17,9 @@ import javax.persistence.Table;
 public class RestedUser {
 	
 	@Id
-	@Column(name = "id", columnDefinition = "BINARY(16)")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private UUID id;
+	private Integer id;
 	
     @Column(name = "dob", nullable = false)
     private Date dob;
@@ -58,7 +55,7 @@ public class RestedUser {
     private Set<ScreenTime> screenTime = new HashSet<>();    
     
     public RestedUser(
-    		final UUID id,
+    		final Integer id,
     		final Date dob,
     		final double age,
     		final Integer sleepQuality,
@@ -67,7 +64,7 @@ public class RestedUser {
 			final String firstName,
 			final String lastName) {
 		super();
-		this.id = Optional.ofNullable(id).orElse(UUID.randomUUID());;
+		this.id = id;
 		this.dob = (Date) dob.clone();
 		this.age = age;
 		this.sleepQuality = sleepQuality.intValue();
@@ -82,11 +79,11 @@ public class RestedUser {
 		super();
 	}
 	
-	public UUID getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

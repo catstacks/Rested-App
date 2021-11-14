@@ -1,23 +1,25 @@
 package com.qa.rested.domain;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import java.sql.Date;
-import java.util.Optional;
-import java.util.UUID;
 
 @Entity
 @Table(name = "weekly_report_data", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "date"}))
 public class WeeklyReportData {
 	
-	 @Id
-	    @Column(name = "id", columnDefinition = "BINARY(16)")
-	    private UUID id;
+	 	@Id
+	 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	    @Column(name = "id")
+	    private Integer id;
 
 	    @ManyToOne
 	    @JoinColumn(name = "user_id", nullable = false)
@@ -36,14 +38,14 @@ public class WeeklyReportData {
 	    private Double weeklyScreenTime = 0.0;
 
 		public WeeklyReportData(
-				final UUID id,
+				final Integer id,
 				final RestedUser user,
 				final Date date,
 				final Double weeklySleep,
 				final Double weeklyWater,
 				final Double weeklyScreenTime) {
 			
-			this.id = Optional.ofNullable(id).orElse(UUID.randomUUID());
+			this.id = id;
 			this.user = user;
 			this.date = (Date) date.clone();
 			this.weeklySleep = weeklySleep;
@@ -54,11 +56,11 @@ public class WeeklyReportData {
 		public WeeklyReportData() {
 	    }
 
-		public UUID getId() {
+		public Integer getId() {
 			return id;
 		}
 
-		public void setId(UUID id) {
+		public void setId(Integer id) {
 			this.id = id;
 		}
 

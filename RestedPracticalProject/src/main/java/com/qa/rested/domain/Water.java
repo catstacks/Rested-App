@@ -4,14 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import java.sql.Timestamp;
-import java.util.Optional;
-import java.util.UUID;
 
 @Entity
 @Table(name = "water", uniqueConstraints = @UniqueConstraint(columnNames = {"id", "user_id"})
@@ -56,8 +55,9 @@ public class Water {
 	}
 	
 	@Id
-    @Column(name = "id", columnDefinition = "BINARY(16)")
-    private UUID id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -74,12 +74,12 @@ public class Water {
     private Double servingSizeAmount;
 
 	public Water(
-			final UUID id,
+			final Integer id,
 			final RestedUser user,
 			final String name,
 			final ServingSize defaultServing,
 			final Double servingSizeAmount) {
-		this.id = Optional.ofNullable(id).orElse(UUID.randomUUID());
+		this.id = id;
 		this.user = user;
 		this.name = name;
 		this.defaultServing = defaultServing;
@@ -89,11 +89,11 @@ public class Water {
 	public Water() {
     }
 
-	public UUID getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

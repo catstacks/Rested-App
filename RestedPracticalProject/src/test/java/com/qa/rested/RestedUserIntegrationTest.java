@@ -58,45 +58,19 @@ public class RestedUserIntegrationTest {
 
 	@Test
 	void testRestedUserNotFound() throws Exception {
-		this.mvc.perform(get("/puppy/get/9999999")).andExpect(status().isNotFound());
+		this.mvc.perform(get("/user/getUser/9999999")).andExpect(status().isNotFound());
 	}
 
 	@Test
-	void testGetAll() throws Exception {
-
-		RequestBuilder request = get("/puppy/getAll");
-
-		ResultMatcher checkStatus = status().isOk();
-
-		RestedUser user = new RestedUser(1, "1999-01-01", 22, 1, "test.user@domain", "password", "test", "user");
-		List<RestedUser> users = List.of(user);
-		String responseBody = this.mapper.writeValueAsString(users);
-		ResultMatcher checkBody = content().json(responseBody);
-
-		this.mvc.perform(request).andExpect(checkStatus).andExpect(checkBody);
-	}
-
-	@Test
-	void testGet() throws Exception {
+	void testGetUser() throws Exception {
 		final String responseBody = this.mapper.writeValueAsString(new RestedUser(1, "1999-01-01", 22, 1, "test.user@domain", "password", "test", "user"));
 		this.mvc.perform(get("/users/getUser/1")).andExpect(status().isOk()).andExpect((ResultMatcher) content().json(responseBody));
 	}
 
-	@Test
-	void testReplace() throws Exception {
-		final String responseBody = this.mapper.writeValueAsString(new RestedUser(2, "1981-06-09", 40, 1, "bob.user@domain", "password", "bob", "user"));
-
-		RequestBuilder request = put("/puppy/replace/1").contentType(MediaType.APPLICATION_JSON).content(responseBody);
-
-		ResultMatcher checkStatus = status().isAccepted();
-		ResultMatcher checkBody = content().json(responseBody);
-
-		this.mvc.perform(request).andExpect(checkStatus).andExpect(checkBody);
-	}
 
 	@Test
 	void testDelete() throws Exception {
-		this.mvc.perform(delete("/puppy/remove/1")).andExpect(status().isNoContent());
+		this.mvc.perform(delete("/user/removeUser/1")).andExpect(status().isNoContent());
 	}
 
 }

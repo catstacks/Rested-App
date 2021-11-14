@@ -17,6 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
+import org.springframework.test.web.client.RequestMatcher;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultMatcher;
@@ -39,64 +40,37 @@ public class SleepIntegrationTest {
 	private ObjectMapper mapper;
 
 	@Test
-	void testCreate() throws Exception {
-		RestedUser requestBody = new RestedUser("Rex 2", "G. Shepherd", 44);
+	void testAddUser() throws Exception {
+		RestedUser requestBody = new RestedUser(1, "1999-01-01", 22, 1, "test.user@domain", "password", "test", "user");
 		String requestBodyAsJSON = this.mapper.writeValueAsString(requestBody);
 
-		RequestBuilder request = post("/puppy/create").contentType(MediaType.APPLICATION_JSON)
-				.content(requestBodyAsJSON); // sets up the test request
+		RequestBuilder request = post("/user/addUser").contentType(MediaType.APPLICATION_JSON)
+				.content(requestBodyAsJSON);
 
-		RestedUser responseBody = new RestedUser(2, "Rex 2", "G. Shepherd", 44);
+		RestedUser responseBody = new RestedUser(2, "1989-01-01", 32, 3, "bob.user@domain", "password", "bob", "user");
 		String responseBodyAsJSON = this.mapper.writeValueAsString(responseBody);
 
-		ResultMatcher checkStatus = status().isCreated(); // check the status code is 201
-		ResultMatcher checkBody = content().json(responseBodyAsJSON); // check the body matches the example
+		ResultMatcher checkStatus = status().isCreated();
+		RequestMatcher checkBody = content().json(responseBodyAsJSON);
 
-		this.mvc.perform(request).andExpect(checkStatus).andExpect(checkBody); // performs request and checks the
-																				// response
+		this.mvc.perform(request).andExpect(checkStatus).andExpect((ResultMatcher) checkBody);
 	}
 
 	@Test
 	void testRestedUserNotFound() throws Exception {
-		this.mvc.perform(get("/puppy/get/9999999")).andExpect(status().isNotFound());
+		this.mvc.perform(get("/user/getUser/9999999")).andExpect(status().isNotFound());
 	}
 
 	@Test
-	void testGetAll() throws Exception {
-
-		RequestBuilder request = get("/puppy/getAll");
-
-		ResultMatcher checkStatus = status().isOk();
-
-		RestedUser user = new RestedUser(1, "1999-01-01", 22, 1, "test.user@domain", "password", "test", "user");
-		List<RestedUser> users = List.of(user);
-		String responseBody = this.mapper.writeValueAsString(users);
-		ResultMatcher checkBody = content().json(responseBody);
-
-		this.mvc.perform(request).andExpect(checkStatus).andExpect(checkBody);
-	}
-
-	@Test
-	void testGet() throws Exception {
+	void testGetUser() throws Exception {
 		final String responseBody = this.mapper.writeValueAsString(new RestedUser(1, "1999-01-01", 22, 1, "test.user@domain", "password", "test", "user"));
 		this.mvc.perform(get("/users/getUser/1")).andExpect(status().isOk()).andExpect((ResultMatcher) content().json(responseBody));
 	}
 
-	@Test
-	void testReplace() throws Exception {
-		final String responseBody = this.mapper.writeValueAsString(new RestedUser(2, "1981-06-09", 40, 1, "bob.user@domain", "password", "bob", "user"));
-
-		RequestBuilder request = put("/puppy/replace/1").contentType(MediaType.APPLICATION_JSON).content(responseBody);
-
-		ResultMatcher checkStatus = status().isAccepted();
-		ResultMatcher checkBody = content().json(responseBody);
-
-		this.mvc.perform(request).andExpect(checkStatus).andExpect(checkBody);
-	}
 
 	@Test
 	void testDelete() throws Exception {
-		this.mvc.perform(delete("/puppy/remove/1")).andExpect(status().isNoContent());
+		this.mvc.perform(delete("/user/removeUser/1")).andExpect(status().isNoContent());
 	}
 
 }

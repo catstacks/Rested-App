@@ -44,15 +44,6 @@ public class RestedUser {
 
     @Column(name = "LAST_NAME", length = 20, nullable = false)
     private String lastName;
-
-    @Column(name = "TIMEZONE", length = 50, nullable = false)
-    private String timeZone;
-
-    @Column(name = "CREATED_TIME", nullable = false)
-    private Timestamp createdTime;
-
-    @Column(name = "LAST_UPDATED_TIME", nullable = false)
-    private Timestamp lastUpdatedTime;
 	
     @OneToMany(mappedBy = "user")
     private Set<DailySleep> sleep = new HashSet<>();
@@ -74,10 +65,7 @@ public class RestedUser {
     		final String email,
     		final String password,
 			final String firstName,
-			final String lastName,
-			final String timeZone,
-			final Timestamp createdTime,
-			final Timestamp lastUpdatedTime) {
+			final String lastName) {
 		super();
 		this.id = Optional.ofNullable(id).orElse(UUID.randomUUID());;
 		this.dob = (Date) dob.clone();
@@ -87,10 +75,6 @@ public class RestedUser {
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.timeZone = timeZone;
-		this.createdTime = (Timestamp)createdTime.clone();
-		this.lastUpdatedTime = (Timestamp) lastUpdatedTime.clone();
-
 	
 	}
 
@@ -160,30 +144,6 @@ public class RestedUser {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public String getTimeZone() {
-		return timeZone;
-	}
-
-	public void setTimeZone(String timeZone) {
-		this.timeZone = timeZone;
-	}
-
-	public Timestamp getCreatedTime() {
-		return createdTime;
-	}
-
-	public void setCreatedTime(Timestamp createdTime) {
-		this.createdTime = createdTime;
-	}
-
-	public Timestamp getLastUpdatedTime() {
-		return lastUpdatedTime;
-	}
-
-	public void setLastUpdatedTime(Timestamp lastUpdatedTime) {
-		this.lastUpdatedTime = lastUpdatedTime;
 	}
 
 	public Set<DailySleep> getSleep() {
@@ -267,25 +227,7 @@ public class RestedUser {
         }
 
     }
-	@Override
-    public boolean equals(final Object otherUser) {
-        boolean equals = false;
-        if (otherUser instanceof RestedUser) {
-            final RestedUser that = (RestedUser) otherUser;
-            equals = this.getId().equals(that.getId())                   
-                    && this.getDob().toString().equals(that.getDob().toString())
-                    && this.getAge() == that.getAge()
-                    && this.getSleepQuality() == that.getSleepQuality()
-                    && this.getEmail().equals(that.getEmail())
-                    && this.getPassword().equals(that.getPassword())
-                    && this.getFirstName().equals(that.getFirstName())
-                    && this.getLastName().equals(that.getLastName())
-                    && this.getTimeZone().equals(that.getTimeZone())                   
-                    && this.getCreatedTime().equals(that.getCreatedTime())
-                    && this.getLastUpdatedTime().equals(that.getLastUpdatedTime());    
-        }
-        return equals;
-    }
+
 	
 	@Override
     public int hashCode() {
@@ -295,10 +237,8 @@ public class RestedUser {
                 + this.getEmail().hashCode()
                 + (this.getPassword() == null ? 0 : this.getPassword().hashCode())
                 + this.getFirstName().hashCode()
-                + this.getLastName().hashCode()
-                + this.getTimeZone().hashCode()
-                + this.getCreatedTime().hashCode()
-                + this.getLastUpdatedTime().hashCode();
+                + this.getLastName().hashCode();
+                
     }
 }
 	

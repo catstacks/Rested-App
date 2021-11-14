@@ -20,12 +20,12 @@ import com.qa.rested.service.RestedUserService;
 
 @RestController
 @RequestMapping("/rested")
-public class RestedController {
+public class RestedUserController {
 	
 	private RestedUserService service;
 
 	@Autowired
-	public RestedController(RestedUserService service) {
+	public RestedUserController(RestedUserService service) {
 		super();
 		this.service = service;
 	}

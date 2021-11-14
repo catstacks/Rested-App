@@ -14,7 +14,7 @@ import com.qa.rested.domain.WeeklyReportData;
 import com.qa.rested.dto.RestedDTO;
 import com.qa.rested.service.WkReportService;
 
-public class WkReportController extends AbstractController {
+public class WkReportController {
 	
 	 private final WkReportService wkReportService;
 
@@ -27,18 +27,6 @@ public class WkReportController extends AbstractController {
 		public WeeklyReportData getReport(@PathVariable Integer id) {
 			return this.wkReportService.getReport(id);
 		}
-
-	    @GetMapping("/report")
-	    public final String viewReport() {
-	        return REPORT_TEMPLATE;
-	    }
-
-	    @GetMapping("/report/get")
-	    @ResponseBody
-	    public final List<WeeklyReportData> getReportData(final HttpServletRequest request) {
-	        final RestedDTO userDTO = currentAuthenticatedUser(request);
-	        return wkReportService.findByUser(userDTO.getId());
-	    }
 
 
 }

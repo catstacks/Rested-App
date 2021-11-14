@@ -1,12 +1,9 @@
 package com.qa.rested.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.qa.rested.domain.RestedUser;
-
 import java.io.Serializable;
 import java.sql.Date;
-import java.sql.Timestamp;
-import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class RestedDTO implements Serializable {
 
@@ -14,7 +11,7 @@ public final class RestedDTO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@JsonIgnore private UUID id;
+	@JsonIgnore private Integer id;
 	private Date dob;
 	private double age;
 	private Integer sleepQuality;
@@ -24,7 +21,7 @@ public final class RestedDTO implements Serializable {
 	private String lastName;
 
     public RestedDTO(
-    		final UUID id,
+    		final Integer id,
     		final Date dob,
     		final double age,
     		final Integer sleepQuality,
@@ -48,11 +45,11 @@ public final class RestedDTO implements Serializable {
     }
 
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(final UUID id) {
+    public void setId(final Integer id) {
         this.id = id;
     }
 

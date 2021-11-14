@@ -144,11 +144,47 @@ public class RestedUserController {
 		return wkReportDataRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
 	}
 	
-	@GetMapping("/showAllUsers")
-	public ResponseEntity<List<RestedUser>> getUsers() {
-		return ResponseEntity.ok(this.service.getUsers());
-	}
+//	@GetMapping("/showAllUsers")
+//	public ResponseEntity<List<RestedUser>> getUsers() {
+//		return ResponseEntity.ok(this.service.getUsers());
+//	}
 
+	
+	@PutMapping("/replaceSleep/{id}")
+	public ResponseEntity<DailySleep> replaceSleep(@PathVariable UUID id, @RequestBody DailySleep newSleep) {
+		DailySleep body = this.service.replaceSleep(id, newSleep);
+		return new ResponseEntity<DailySleep>(body, HttpStatus.ACCEPTED);
+	}
+	
+	@PutMapping("/replaceDream/{id}")
+	public ResponseEntity<DreamJournal> replaceDream(@PathVariable UUID id, @RequestBody DreamJournal newDream) {
+		DreamJournal body = this.service.replaceDream(id, newDream);
+		return new ResponseEntity<DreamJournal>(body, HttpStatus.ACCEPTED);
+	}
+	
+	@PutMapping("/replaceScreen/{id}")
+	public ResponseEntity<ScreenTime> replaceScreen(@PathVariable UUID id, @RequestBody ScreenTime newScreen) {
+		ScreenTime body = this.service.replaceScreen(id, newScreen);
+		return new ResponseEntity<ScreenTime>(body, HttpStatus.ACCEPTED);
+	}
+	
+	@PutMapping("/replaceWater/{id}")
+	public ResponseEntity<Water> replaceWater(@PathVariable UUID id, @RequestBody Water newWater) {
+		Water body = this.service.replaceWater(id, newWater);
+		return new ResponseEntity<Water>(body, HttpStatus.ACCEPTED);
+	}
+	
+	@PutMapping("/replaceWaterConsumed/{id}")
+	public ResponseEntity<WaterConsumed> replaceWaterConsumed(@PathVariable UUID id, @RequestBody WaterConsumed newWaterConsumed) {
+		WaterConsumed body = this.service.replaceWaterConsumed(id, newWaterConsumed);
+		return new ResponseEntity<WaterConsumed>(body, HttpStatus.ACCEPTED);
+	}
+	
+	@PutMapping("/replaceReport/{id}")
+	public ResponseEntity<WeeklyReportData> replaceReport(@PathVariable UUID id, @RequestBody WeeklyReportData newReport) {
+		WeeklyReportData body = this.service.replaceReport(id, newReport);
+		return new ResponseEntity<WeeklyReportData>(body, HttpStatus.ACCEPTED);
+	}
 	
 	@PutMapping("/replaceUser/{id}")
 	public ResponseEntity<RestedUser> replaceUser(@PathVariable Integer id, @RequestBody RestedUser newUser) {

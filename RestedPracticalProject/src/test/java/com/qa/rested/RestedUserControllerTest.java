@@ -2,7 +2,9 @@ package com.qa.rested;
 
 import java.io.File;
 
+import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.qa.rested.domain.RestedUser;
@@ -32,6 +34,42 @@ public class RestedUserControllerTest {
 	@BeforeAll
 	public static void beginTest() {
 		System.out.println("The test starts now");
+		System.out.println("=========================================");
+	}
+	
+	@BeforeEach
+	public void setup() {
+		RestedUser restedUser = new RestedUser();;
+		System.out.println("Run before every test");
+		fileIn = new File("users-data.sql");
+		
+	}
+
+	@Test
+	@Ignore
+	public void someTest() {
+		boolean something = false;
+		System.out.println("This is a test");
+		assertEquals(1, 1);
+		assertFalse("This will print if our conditions don't match", something);
+		assertTrue("This will print if our conditions don't match", false);
+	}
+
+	@Test
+	public void someOtherTest() {
+		System.out.println("This is a test");
+	}
+
+	@After
+	public void close() {
+		System.out.println("Ran after each test");
+		fileIn.delete();
+	}
+
+	@AfterClass
+	public static void tearDown() {
+		// scanner.close();
+		System.out.println("End of test");
 		System.out.println("=========================================");
 	}
 	

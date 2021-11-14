@@ -20,29 +20,29 @@ import javax.persistence.Table;
 public class RestedUser {
 	
 	@Id
-	@Column(name = "ID", columnDefinition = "BINARY(16)")
+	@Column(name = "id", columnDefinition = "BINARY(16)")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private UUID id;
 	
-    @Column(name = "DOB", nullable = false)
+    @Column(name = "dob", nullable = false)
     private Date dob;
 
-    @Column(name = "AGE", nullable = false)
+    @Column(name = "age", nullable = false)
     private double age;
 
-    @Column(name = "SLEEP_QUALITY", nullable = false)
+    @Column(name = "sleep_qaulity", nullable = false)
     private Integer sleepQuality;
 
-    @Column(name = "EMAIL", length = 100, nullable = false)
+    @Column(name = "email", length = 100, nullable = false)
     private String email;
 
-    @Column(name = "PASSWORD", length = 100, nullable = true)
+    @Column(name = "password", length = 100, nullable = true)
     private String password;
 
-    @Column(name = "FIRST_NAME", length = 20, nullable = false)
+    @Column(name = "first_name", length = 20, nullable = false)
     private String firstName;
 
-    @Column(name = "LAST_NAME", length = 20, nullable = false)
+    @Column(name = "last_name", length = 20, nullable = false)
     private String lastName;
 	
     @OneToMany(mappedBy = "user")

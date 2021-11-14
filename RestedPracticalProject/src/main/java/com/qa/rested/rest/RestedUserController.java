@@ -1,7 +1,8 @@
 package com.qa.rested.rest;
 
 import java.util.List;
-
+import java.util.NoSuchElementException;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,12 +17,48 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.rested.domain.RestedUser;
+import com.qa.rested.repos.DailySleepRepo;
+import com.qa.rested.repos.JournalRepo;
+import com.qa.rested.repos.RestedRepo;
+import com.qa.rested.repos.ScreenTimeRepo;
+import com.qa.rested.repos.WaterConsumedRepo;
+import com.qa.rested.repos.WaterRepo;
+import com.qa.rested.repos.WkReportDataRepo;
 import com.qa.rested.service.RestedUserService;
 
 @RestController
-@RequestMapping("/rested")
+@RequestMapping("/user")
 public class RestedUserController {
 	
+	
+	private RestedRepo restedRepository;	
+	private DailySleepRepo dailySleepRepository;	
+	private JournalRepo journalRepository;	
+	private ScreenTimeRepo screenTimeRepository;	
+	private WaterConsumedRepo waterConsumedRepository;	
+	private WaterRepo waterRepository;	
+	private WkReportDataRepo wkReportDataRepository;
+	
+	
+	
+	public RestedUserController(
+			RestedRepo restedRepository,
+			DailySleepRepo dailySleepRepository,
+			JournalRepo journalRepository,
+			ScreenTimeRepo screenTimeRepository,
+			WaterConsumedRepo waterConsumedRepository,
+			WaterRepo waterRepository,
+			WkReportDataRepo wkReportDataRepository) {
+		
+		this.restedRepository = restedRepository;
+		this.dailySleepRepository = dailySleepRepository;
+		this.journalRepository = journalRepository;
+		this.screenTimeRepository = screenTimeRepository;
+		this.waterConsumedRepository = waterConsumedRepository;
+		this.waterRepository = waterRepository;
+		this.wkReportDataRepository = wkReportDataRepository;
+	}
+
 	private RestedUserService service;
 
 	@Autowired
@@ -29,11 +66,15 @@ public class RestedUserController {
 		super();
 		this.service = service;
 	}
-
-	@PostMapping("/create")
-	public ResponseEntity<RestedUser> createUser(@RequestBody RestedUser newUser) {
-		RestedUser responseBody = this.service.createUser(newUser);
-		return new ResponseEntity<RestedUser>(responseBody, HttpStatus.CREATED);
+	
+	@GetMapping("/getUser/{id}")
+	public RestedUser getUser(@PathVariable UUID id) {
+		return restedRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
+	}
+	
+	@PostMapping("/addUser")
+	public RestedUser addUser(@RequestBody RestedUser newUser) {
+		return restedRepository.save(newUser);
 	}
 
 	@GetMapping("/showAllUsers")
@@ -41,10 +82,7 @@ public class RestedUserController {
 		return ResponseEntity.ok(this.service.getUsers());
 	}
 
-	@GetMapping("/getUser/{id}")
-	public RestedUser getUser(@PathVariable Integer id) {
-		return this.service.getUser(id);
-	}
+	
 
 	@PutMapping("/replaceUser/{id}")
 	public ResponseEntity<RestedUser> replaceUser(@PathVariable Integer id, @RequestBody RestedUser newUser) {

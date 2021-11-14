@@ -16,7 +16,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.qa.rested.domain.DailySleep;
+import com.qa.rested.domain.DreamJournal;
 import com.qa.rested.domain.RestedUser;
+import com.qa.rested.domain.ScreenTime;
+import com.qa.rested.domain.Water;
+import com.qa.rested.domain.WaterConsumed;
+import com.qa.rested.domain.WeeklyReportData;
 import com.qa.rested.repos.DailySleepRepo;
 import com.qa.rested.repos.JournalRepo;
 import com.qa.rested.repos.RestedRepo;
@@ -76,14 +82,74 @@ public class RestedUserController {
 	public RestedUser addUser(@RequestBody RestedUser newUser) {
 		return restedRepository.save(newUser);
 	}
+	
+	@PostMapping("/addSleep")
+	public DailySleep addSleep(@RequestBody DailySleep newSleep) {
+		return dailySleepRepository.save(newSleep);
+	}
+	
+	@PostMapping("/addDream")
+	public DreamJournal addDream(@RequestBody DreamJournal newDream) {
+		return journalRepository.save(newDream);
+	}
+	
+	@PostMapping("/addScreen")
+	public ScreenTime addScreen(@RequestBody ScreenTime newScreen) {
+		return screenTimeRepository.save(newScreen);
+	}
+	
+	@PostMapping("/addWaterConsumed")
+	public WaterConsumed addWaterConsumed(@RequestBody WaterConsumed newWaterConsumed) {
+		return waterConsumedRepository.save(newWaterConsumed);
+	}
+	
+	@PostMapping("/addWater")
+	public Water addWater(@RequestBody Water newWater) {
+		return waterRepository.save(newWater);
+	}
+	
+	@PostMapping("/addReport")
+	public WeeklyReportData addReport(@RequestBody WeeklyReportData newReport) {
+		return wkReportDataRepository.save(newReport);
+	}
 
+	
+	@GetMapping("/getSleep/{id}")
+	public DailySleep getSleep(@PathVariable UUID id) {
+		return dailySleepRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
+	}
+	
+	@GetMapping("/getDream/{id}")
+	public DreamJournal getDream(@PathVariable UUID id) {
+		return journalRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
+	}
+	
+	@GetMapping("/getScreen/{id}")
+	public ScreenTime getScreen(@PathVariable UUID id) {
+		return screenTimeRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
+	}
+	
+	@GetMapping("/getWaterConsumed/{id}")
+	public WaterConsumed getWaterConsumed(@PathVariable UUID id) {
+		return waterConsumedRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
+	}
+	
+	@GetMapping("/getWater/{id}")
+	public Water getWater(@PathVariable UUID id) {
+		return waterRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
+	}
+	
+	@GetMapping("/getReport/{id}")
+	public WeeklyReportData getReport(@PathVariable UUID id) {
+		return wkReportDataRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
+	}
+	
 	@GetMapping("/showAllUsers")
 	public ResponseEntity<List<RestedUser>> getUsers() {
 		return ResponseEntity.ok(this.service.getUsers());
 	}
 
 	
-
 	@PutMapping("/replaceUser/{id}")
 	public ResponseEntity<RestedUser> replaceUser(@PathVariable Integer id, @RequestBody RestedUser newUser) {
 		RestedUser body = this.service.replaceUser(id, newUser);

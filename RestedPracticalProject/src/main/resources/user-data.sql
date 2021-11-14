@@ -1,48 +1,18 @@
 INSERT INTO `RESTED_USER` 
-(`dob`, `age`, `sleep_quality`, `email`, `password`, `first_name`, `last_name`)
+(`id`, `dob`, `age`, `sleep_quality`, `email`, `password`, `first_name`, `last_name`)
 
  
 	VALUES 
-(01/01/2001, 20, 1, 'Test.User@domain.com', 'password', 'Billy', 'Bob');
+(1, '2001-01-01', 20, 1, 'Test.User@domain.com', 'password', 'Billy', 'Bob');
 
-INSERT INTO `daily_sleep` 
-(`date`, `hours`, `minutes`)
+INSERT INTO `daily_sleep` VALUES (1, 1, 1, '2021-11-11', 6, 5);
 
- 
-	VALUES 
-(11/11/2021, 6, 5);
+INSERT INTO `dream_journal`	VALUES (1, 1, 'extremely poor');
 
-INSERT INTO `RESTED_USER` 
-(`dob`, `age`, `sleep_quality`, `email`, `password`, `first_name`, `last_name`)
+INSERT INTO `screen_time` VALUES (1, 1, '2021-11-11', 2, 3);
 
- 
-	VALUES 
-(01/01/2001, 20, 1, 'Test.User@domain.com', 'password', 'Billy', 'Bob');
+INSERT INTO `water` VALUES (1, 1, 'cup','centilitre', 25);
 
-INSERT INTO `RESTED_USER` 
-(`dob`, `age`, `sleep_quality`, `email`, `password`, `first_name`, `last_name`)
+INSERT INTO `water_consumed` VALUES (1, 1, 1, '2021-11-11', 'cup', 5);
 
- 
-	VALUES 
-(01/01/2001, 20, 1, 'Test.User@domain.com', 'password', 'Billy', 'Bob');
-
-INSERT INTO `RESTED_USER` 
-(`dob`, `age`, `sleep_quality`, `email`, `password`, `first_name`, `last_name`)
-
- 
-	VALUES 
-(01/01/2001, 20, 1, 'Test.User@domain.com', 'password', 'Billy', 'Bob');
-
-INSERT INTO `RESTED_USER` 
-(`dob`, `age`, `sleep_quality`, `email`, `password`, `first_name`, `last_name`)
-
- 
-	VALUES 
-(01/01/2001, 20, 1, 'Test.User@domain.com', 'password', 'Billy', 'Bob');
-
-INSERT INTO `RESTED_USER` 
-(`dob`, `age`, `sleep_quality`, `email`, `password`, `first_name`, `last_name`)
-
- 
-	VALUES 
-(01/01/2001, 20, 1, 'Test.User@domain.com', 'password', 'Billy', 'Bob');
+INSERT INTO `weekly_report_data` VALUES (1, 1, '', 3.8, 60, 18.9);

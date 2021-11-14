@@ -1,7 +1,6 @@
 package com.qa.rested.dto;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -12,7 +11,7 @@ public final class RestedDTO implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@JsonIgnore private Integer id;
-	private Date dob;
+	private String dob;
 	private double age;
 	private Integer sleepQuality;
 	private String email;
@@ -22,7 +21,7 @@ public final class RestedDTO implements Serializable {
 
     public RestedDTO(
     		final Integer id,
-    		final Date dob,
+    		final String dob,
     		final double age,
     		final Integer sleepQuality,
     		final String email,
@@ -32,7 +31,7 @@ public final class RestedDTO implements Serializable {
     ) 
     
     {	this.id = id;
-    	this.dob = (Date) dob.clone();
+    	this.dob = dob;
     	this.age =age;
     	this.sleepQuality = sleepQuality;
     	this.email = email;
@@ -54,11 +53,11 @@ public final class RestedDTO implements Serializable {
     }
 
 
-    public Date getDob() {
+    public String getDob() {
 		return dob;
 	}
 
-	public void setDob(Date dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 

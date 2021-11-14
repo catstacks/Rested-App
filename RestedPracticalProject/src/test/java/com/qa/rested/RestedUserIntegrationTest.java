@@ -4,10 +4,7 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +66,7 @@ public class RestedUserIntegrationTest {
 
 
 	@Test
-	void testDelete() throws Exception {
+	void testDeleteUser() throws Exception {
 		this.mvc.perform(delete("/user/removeUser/1")).andExpect(status().isNoContent());
 	}
 

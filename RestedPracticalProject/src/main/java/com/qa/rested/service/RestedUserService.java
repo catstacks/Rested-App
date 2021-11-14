@@ -22,7 +22,7 @@ public interface RestedUserService {
 
 	RestedUser replaceUser(Integer id, RestedUser newUser);
 
-	boolean removeUser(Integer id);
+	boolean removeUser(UUID id);
 
 	RestedDTO findByEmail(String attribute);
 
@@ -37,6 +37,18 @@ public interface RestedUserService {
 	WaterConsumed replaceWaterConsumed(UUID id, WaterConsumed newWaterConsumed);
 
 	WeeklyReportData replaceReport(UUID id, WeeklyReportData newReport);
+
+	boolean removeSleep(UUID id);
+
+	boolean removeDream(UUID id);
+
+	boolean removeScreen(UUID id);
+
+	boolean removeWater(UUID id);
+
+	boolean removeWaterConsumed(UUID id);
+
+	boolean removeReport(UUID id);
 	}
 
 

@@ -185,15 +185,9 @@ public class RestedUserController {
 		WeeklyReportData body = this.service.replaceReport(id, newReport);
 		return new ResponseEntity<WeeklyReportData>(body, HttpStatus.ACCEPTED);
 	}
-	
-	@PutMapping("/replaceUser/{id}")
-	public ResponseEntity<RestedUser> replaceUser(@PathVariable Integer id, @RequestBody RestedUser newUser) {
-		RestedUser body = this.service.replaceUser(id, newUser);
-		return new ResponseEntity<RestedUser>(body, HttpStatus.ACCEPTED);
-	}
 
 	@DeleteMapping("/removeUser/{id}")
-	public ResponseEntity<?> removeUser(@PathVariable Integer id) {
+	public ResponseEntity<?> removeUser(@PathVariable UUID id) {
 		boolean removed = this.service.removeUser(id);
 		if (removed) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -201,5 +195,69 @@ public class RestedUserController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	@DeleteMapping("/removeSleep/{id}")
+	public ResponseEntity<?> removeSleep(@PathVariable UUID id) {
+		boolean removed = this.service.removeSleep(id);
+		if (removed) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} else {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+	}
+			
+	@DeleteMapping("/removeDream/{id}")
+	public ResponseEntity<?> removedream(@PathVariable UUID id) {
+		boolean removed = this.service.removeDream(id);
+		if (removed) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} else {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+	}
+				
+	@DeleteMapping("/removeScreen/{id}")
+	public ResponseEntity<?> removeScreen(@PathVariable UUID id) {
+		boolean removed = this.service.removeScreen(id);
+		if (removed) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} else {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+	}
+		
+	@DeleteMapping("/removeWater/{id}")
+	public ResponseEntity<?> removeWater(@PathVariable UUID id) {
+		boolean removed = this.service.removeWater(id);
+		if (removed) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} else {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+	}
+						
+	@DeleteMapping("/removeWaterConsumed/{id}")
+	public ResponseEntity<?> removeWaterConsumed(@PathVariable UUID id) {
+		boolean removed = this.service.removeWaterConsumed(id);
+		if (removed) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} else {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+	}
+							
+	@DeleteMapping("/removeReport/{id}")
+	public ResponseEntity<?> removeReport(@PathVariable UUID id) {
+		boolean removed = this.service.removeReport(id);
+		if (removed) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} else {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+}
 
 }

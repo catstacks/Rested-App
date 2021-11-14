@@ -1,4 +1,4 @@
- DROP TABLE IF EXISTS `rested_users` CASCADE; 
+DROP TABLE IF EXISTS `rested_users` CASCADE; 
 
 CREATE TABLE `rested_users` (
 	`id` binary(16) NOT NULL, 

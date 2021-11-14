@@ -26,7 +26,7 @@ CREATE TABLE `daily_sleep` (
 
 DROP TABLE IF EXISTS `dream_journal` CASCADE; 
 
-CREATE TABLE `daily_sleep` (
+CREATE TABLE `dream_journal` (
 	`id` binary(16) NOT NULL, 
 	`sleep_rating` integer(2) NOT NULL,
 	`description` varchar(500),	

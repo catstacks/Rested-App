@@ -85,11 +85,11 @@ public class WaterConsumed {
 		this.water = water;
 	}
 
-	public String getString() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setString(String date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

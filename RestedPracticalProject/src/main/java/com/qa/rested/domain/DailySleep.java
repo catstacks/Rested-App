@@ -81,11 +81,11 @@ public class DailySleep {
 		this.dreamjournal = dreamjournal;
 	}
 
-	public String getString() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setString(String date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

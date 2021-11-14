@@ -1,7 +1,5 @@
 package com.qa.rested.service;
 
-import java.util.UUID;
-
 import org.springframework.stereotype.Service;
 
 import com.qa.rested.domain.DailySleep;
@@ -29,79 +27,79 @@ public class WaterService implements RestedUserService {
 	}
 
 	@Override
-	public DailySleep replaceSleep(UUID id, DailySleep newSleep) {
+	public DailySleep replaceSleep(Integer id, DailySleep newSleep) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public DreamJournal replaceDream(UUID id, DreamJournal newDream) {
+	public DreamJournal replaceDream(Integer id, DreamJournal newDream) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ScreenTime replaceScreen(UUID id, ScreenTime newScreen) {
+	public ScreenTime replaceScreen(Integer id, ScreenTime newScreen) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Water replaceWater(UUID id, Water newWater) {
+	public Water replaceWater(Integer id, Water newWater) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public WaterConsumed replaceWaterConsumed(UUID id, WaterConsumed newWaterConsumed) {
+	public WaterConsumed replaceWaterConsumed(Integer id, WaterConsumed newWaterConsumed) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public WeeklyReportData replaceReport(UUID id, WeeklyReportData newReport) {
+	public WeeklyReportData replaceReport(Integer id, WeeklyReportData newReport) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean removeUser(UUID id) {
+	public boolean removeUser(Integer id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean removeSleep(UUID id) {
+	public boolean removeSleep(Integer id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean removeDream(UUID id) {
+	public boolean removeDream(Integer id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean removeScreen(UUID id) {
+	public boolean removeScreen(Integer id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean removeWater(UUID id) {
+	public boolean removeWater(Integer id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean removeWaterConsumed(UUID id) {
+	public boolean removeWaterConsumed(Integer id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean removeReport(UUID id) {
+	public boolean removeReport(Integer id) {
 		// TODO Auto-generated method stub
 		return false;
 	}

@@ -1,8 +1,5 @@
 package com.qa.rested.service;
 
-import java.util.List;
-import java.util.UUID;
-
 import com.qa.rested.domain.DailySleep;
 import com.qa.rested.domain.DreamJournal;
 import com.qa.rested.domain.RestedUser;
@@ -18,35 +15,35 @@ public interface RestedUserService {
 
 //	List<RestedUser> getUsers();
 //
-//	RestedUser getUser(UUID id);	
+//	RestedUser getUser(Integer id);	
 
 	RestedDTO findByEmail(String attribute);
 
-	DailySleep replaceSleep(UUID id, DailySleep newSleep);
+	DailySleep replaceSleep(Integer id, DailySleep newSleep);
 
-	DreamJournal replaceDream(UUID id, DreamJournal newDream);
+	DreamJournal replaceDream(Integer id, DreamJournal newDream);
 
-	ScreenTime replaceScreen(UUID id, ScreenTime newScreen);
+	ScreenTime replaceScreen(Integer id, ScreenTime newScreen);
 
-	Water replaceWater(UUID id, Water newWater);
+	Water replaceWater(Integer id, Water newWater);
 
-	WaterConsumed replaceWaterConsumed(UUID id, WaterConsumed newWaterConsumed);
+	WaterConsumed replaceWaterConsumed(Integer id, WaterConsumed newWaterConsumed);
 
-	WeeklyReportData replaceReport(UUID id, WeeklyReportData newReport);
+	WeeklyReportData replaceReport(Integer id, WeeklyReportData newReport);
 	
-	boolean removeUser(UUID id);
+	boolean removeUser(Integer id);
 
-	boolean removeSleep(UUID id);
+	boolean removeSleep(Integer id);
 
-	boolean removeDream(UUID id);
+	boolean removeDream(Integer id);
 
-	boolean removeScreen(UUID id);
+	boolean removeScreen(Integer id);
 
-	boolean removeWater(UUID id);
+	boolean removeWater(Integer id);
 
-	boolean removeWaterConsumed(UUID id);
+	boolean removeWaterConsumed(Integer id);
 
-	boolean removeReport(UUID id);
+	boolean removeReport(Integer id);
 	}
 
 

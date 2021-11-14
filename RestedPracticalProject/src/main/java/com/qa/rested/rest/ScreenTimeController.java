@@ -2,8 +2,6 @@ package com.qa.rested.rest;
 
 import java.util.NoSuchElementException;
 
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,18 +44,18 @@ public class ScreenTimeController {
 	}
 	
 	@GetMapping("/getScreen/{id}")
-	public ScreenTime getScreen(@PathVariable UUID id) {
+	public ScreenTime getScreen(@PathVariable Integer id) {
 		return screenTimeRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
 	}
 	
 	@PutMapping("/replaceScreen/{id}")
-	public ResponseEntity<ScreenTime> replaceScreen(@PathVariable UUID id, @RequestBody ScreenTime newScreen) {
+	public ResponseEntity<ScreenTime> replaceScreen(@PathVariable Integer id, @RequestBody ScreenTime newScreen) {
 		ScreenTime body = this.service.replaceScreen(id, newScreen);
 		return new ResponseEntity<ScreenTime>(body, HttpStatus.ACCEPTED);
 	}
 	
 	@DeleteMapping("/removeScreen/{id}")
-	public ResponseEntity<?> removeScreen(@PathVariable UUID id) {
+	public ResponseEntity<?> removeScreen(@PathVariable Integer id) {
 		boolean removed = this.service.removeScreen(id);
 		if (removed) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);

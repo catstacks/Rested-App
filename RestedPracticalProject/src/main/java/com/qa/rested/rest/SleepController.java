@@ -1,7 +1,6 @@
 package com.qa.rested.rest;
 
 import java.util.NoSuchElementException;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,18 +43,18 @@ public class SleepController {
 	}
 	
 	@GetMapping("/getSleep/{id}")
-	public DailySleep getSleep(@PathVariable UUID id) {
+	public DailySleep getSleep(@PathVariable Integer id) {
 		return dailySleepRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
 	}
 	
 	@PutMapping("/replaceSleep/{id}")
-	public ResponseEntity<DailySleep> replaceSleep(@PathVariable UUID id, @RequestBody DailySleep newSleep) {
+	public ResponseEntity<DailySleep> replaceSleep(@PathVariable Integer id, @RequestBody DailySleep newSleep) {
 		DailySleep body = this.service.replaceSleep(id, newSleep);
 		return new ResponseEntity<DailySleep>(body, HttpStatus.ACCEPTED);
 	}
 	
 	@DeleteMapping("/removeSleep/{id}")
-	public ResponseEntity<?> removeSleep(@PathVariable UUID id) {
+	public ResponseEntity<?> removeSleep(@PathVariable Integer id) {
 		boolean removed = this.service.removeSleep(id);
 		if (removed) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);

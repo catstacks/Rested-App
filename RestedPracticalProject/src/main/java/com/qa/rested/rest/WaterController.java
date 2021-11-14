@@ -1,7 +1,6 @@
 package com.qa.rested.rest;
 
 import java.util.NoSuchElementException;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -53,29 +52,29 @@ public class WaterController {
 	}
 	
 	@GetMapping("/getWaterConsumed/{id}")
-	public WaterConsumed getWaterConsumed(@PathVariable UUID id) {
+	public WaterConsumed getWaterConsumed(@PathVariable Integer id) {
 		return waterConsumedRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
 	}
 	
 	@GetMapping("/getWater/{id}")
-	public Water getWater(@PathVariable UUID id) {
+	public Water getWater(@PathVariable Integer id) {
 		return waterRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
 	}
 	
 	@PutMapping("/replaceWater/{id}")
-	public ResponseEntity<Water> replaceWater(@PathVariable UUID id, @RequestBody Water newWater) {
+	public ResponseEntity<Water> replaceWater(@PathVariable Integer id, @RequestBody Water newWater) {
 		Water body = this.service.replaceWater(id, newWater);
 		return new ResponseEntity<Water>(body, HttpStatus.ACCEPTED);
 	}
 	
 	@PutMapping("/replaceWaterConsumed/{id}")
-	public ResponseEntity<WaterConsumed> replaceWaterConsumed(@PathVariable UUID id, @RequestBody WaterConsumed newWaterConsumed) {
+	public ResponseEntity<WaterConsumed> replaceWaterConsumed(@PathVariable Integer id, @RequestBody WaterConsumed newWaterConsumed) {
 		WaterConsumed body = this.service.replaceWaterConsumed(id, newWaterConsumed);
 		return new ResponseEntity<WaterConsumed>(body, HttpStatus.ACCEPTED);
 	}
 	
 	@DeleteMapping("/removeWater/{id}")
-	public ResponseEntity<?> removeWater(@PathVariable UUID id) {
+	public ResponseEntity<?> removeWater(@PathVariable Integer id) {
 		boolean removed = this.service.removeWater(id);
 		if (removed) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -86,7 +85,7 @@ public class WaterController {
 	}
 						
 	@DeleteMapping("/removeWaterConsumed/{id}")
-	public ResponseEntity<?> removeWaterConsumed(@PathVariable UUID id) {
+	public ResponseEntity<?> removeWaterConsumed(@PathVariable Integer id) {
 		boolean removed = this.service.removeWaterConsumed(id);
 		if (removed) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);

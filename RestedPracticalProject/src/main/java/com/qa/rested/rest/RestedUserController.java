@@ -1,8 +1,6 @@
 package com.qa.rested.rest;
 
-import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -74,7 +72,7 @@ public class RestedUserController {
 	}
 	
 	@GetMapping("/getUser/{id}")
-	public RestedUser getUser(@PathVariable UUID id) {
+	public RestedUser getUser(@PathVariable Integer id) {
 		return restedRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
 	}
 	
@@ -115,32 +113,32 @@ public class RestedUserController {
 
 	
 	@GetMapping("/getSleep/{id}")
-	public DailySleep getSleep(@PathVariable UUID id) {
+	public DailySleep getSleep(@PathVariable Integer id) {
 		return dailySleepRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
 	}
 	
 	@GetMapping("/getDream/{id}")
-	public DreamJournal getDream(@PathVariable UUID id) {
+	public DreamJournal getDream(@PathVariable Integer id) {
 		return journalRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
 	}
 	
 	@GetMapping("/getScreen/{id}")
-	public ScreenTime getScreen(@PathVariable UUID id) {
+	public ScreenTime getScreen(@PathVariable Integer id) {
 		return screenTimeRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
 	}
 	
 	@GetMapping("/getWaterConsumed/{id}")
-	public WaterConsumed getWaterConsumed(@PathVariable UUID id) {
+	public WaterConsumed getWaterConsumed(@PathVariable Integer id) {
 		return waterConsumedRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
 	}
 	
 	@GetMapping("/getWater/{id}")
-	public Water getWater(@PathVariable UUID id) {
+	public Water getWater(@PathVariable Integer id) {
 		return waterRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
 	}
 	
 	@GetMapping("/getReport/{id}")
-	public WeeklyReportData getReport(@PathVariable UUID id) {
+	public WeeklyReportData getReport(@PathVariable Integer id) {
 		return wkReportDataRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
 	}
 	
@@ -151,43 +149,43 @@ public class RestedUserController {
 
 	
 	@PutMapping("/replaceSleep/{id}")
-	public ResponseEntity<DailySleep> replaceSleep(@PathVariable UUID id, @RequestBody DailySleep newSleep) {
+	public ResponseEntity<DailySleep> replaceSleep(@PathVariable Integer id, @RequestBody DailySleep newSleep) {
 		DailySleep body = this.service.replaceSleep(id, newSleep);
 		return new ResponseEntity<DailySleep>(body, HttpStatus.ACCEPTED);
 	}
 	
 	@PutMapping("/replaceDream/{id}")
-	public ResponseEntity<DreamJournal> replaceDream(@PathVariable UUID id, @RequestBody DreamJournal newDream) {
+	public ResponseEntity<DreamJournal> replaceDream(@PathVariable Integer id, @RequestBody DreamJournal newDream) {
 		DreamJournal body = this.service.replaceDream(id, newDream);
 		return new ResponseEntity<DreamJournal>(body, HttpStatus.ACCEPTED);
 	}
 	
 	@PutMapping("/replaceScreen/{id}")
-	public ResponseEntity<ScreenTime> replaceScreen(@PathVariable UUID id, @RequestBody ScreenTime newScreen) {
+	public ResponseEntity<ScreenTime> replaceScreen(@PathVariable Integer id, @RequestBody ScreenTime newScreen) {
 		ScreenTime body = this.service.replaceScreen(id, newScreen);
 		return new ResponseEntity<ScreenTime>(body, HttpStatus.ACCEPTED);
 	}
 	
 	@PutMapping("/replaceWater/{id}")
-	public ResponseEntity<Water> replaceWater(@PathVariable UUID id, @RequestBody Water newWater) {
+	public ResponseEntity<Water> replaceWater(@PathVariable Integer id, @RequestBody Water newWater) {
 		Water body = this.service.replaceWater(id, newWater);
 		return new ResponseEntity<Water>(body, HttpStatus.ACCEPTED);
 	}
 	
 	@PutMapping("/replaceWaterConsumed/{id}")
-	public ResponseEntity<WaterConsumed> replaceWaterConsumed(@PathVariable UUID id, @RequestBody WaterConsumed newWaterConsumed) {
+	public ResponseEntity<WaterConsumed> replaceWaterConsumed(@PathVariable Integer id, @RequestBody WaterConsumed newWaterConsumed) {
 		WaterConsumed body = this.service.replaceWaterConsumed(id, newWaterConsumed);
 		return new ResponseEntity<WaterConsumed>(body, HttpStatus.ACCEPTED);
 	}
 	
 	@PutMapping("/replaceReport/{id}")
-	public ResponseEntity<WeeklyReportData> replaceReport(@PathVariable UUID id, @RequestBody WeeklyReportData newReport) {
+	public ResponseEntity<WeeklyReportData> replaceReport(@PathVariable Integer id, @RequestBody WeeklyReportData newReport) {
 		WeeklyReportData body = this.service.replaceReport(id, newReport);
 		return new ResponseEntity<WeeklyReportData>(body, HttpStatus.ACCEPTED);
 	}
 
 	@DeleteMapping("/removeUser/{id}")
-	public ResponseEntity<?> removeUser(@PathVariable UUID id) {
+	public ResponseEntity<?> removeUser(@PathVariable Integer id) {
 		boolean removed = this.service.removeUser(id);
 		if (removed) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -196,7 +194,7 @@ public class RestedUserController {
 		}
 	}
 	@DeleteMapping("/removeSleep/{id}")
-	public ResponseEntity<?> removeSleep(@PathVariable UUID id) {
+	public ResponseEntity<?> removeSleep(@PathVariable Integer id) {
 		boolean removed = this.service.removeSleep(id);
 		if (removed) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -207,7 +205,7 @@ public class RestedUserController {
 	}
 			
 	@DeleteMapping("/removeDream/{id}")
-	public ResponseEntity<?> removedream(@PathVariable UUID id) {
+	public ResponseEntity<?> removedream(@PathVariable Integer id) {
 		boolean removed = this.service.removeDream(id);
 		if (removed) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -218,7 +216,7 @@ public class RestedUserController {
 	}
 				
 	@DeleteMapping("/removeScreen/{id}")
-	public ResponseEntity<?> removeScreen(@PathVariable UUID id) {
+	public ResponseEntity<?> removeScreen(@PathVariable Integer id) {
 		boolean removed = this.service.removeScreen(id);
 		if (removed) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -229,7 +227,7 @@ public class RestedUserController {
 	}
 		
 	@DeleteMapping("/removeWater/{id}")
-	public ResponseEntity<?> removeWater(@PathVariable UUID id) {
+	public ResponseEntity<?> removeWater(@PathVariable Integer id) {
 		boolean removed = this.service.removeWater(id);
 		if (removed) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -240,7 +238,7 @@ public class RestedUserController {
 	}
 						
 	@DeleteMapping("/removeWaterConsumed/{id}")
-	public ResponseEntity<?> removeWaterConsumed(@PathVariable UUID id) {
+	public ResponseEntity<?> removeWaterConsumed(@PathVariable Integer id) {
 		boolean removed = this.service.removeWaterConsumed(id);
 		if (removed) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -251,7 +249,7 @@ public class RestedUserController {
 	}
 							
 	@DeleteMapping("/removeReport/{id}")
-	public ResponseEntity<?> removeReport(@PathVariable UUID id) {
+	public ResponseEntity<?> removeReport(@PathVariable Integer id) {
 		boolean removed = this.service.removeReport(id);
 		if (removed) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);

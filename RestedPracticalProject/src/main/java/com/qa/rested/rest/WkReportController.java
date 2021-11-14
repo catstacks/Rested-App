@@ -1,7 +1,6 @@
 package com.qa.rested.rest;
 
 import java.util.NoSuchElementException;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,18 +42,18 @@ public class WkReportController {
 	}
 	
 	@GetMapping("/getReport/{id}")
-	public WeeklyReportData getReport(@PathVariable UUID id) {
+	public WeeklyReportData getReport(@PathVariable Integer id) {
 		return wkReportDataRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
 	}
 	
 	@PutMapping("/replaceReport/{id}")
-	public ResponseEntity<WeeklyReportData> replaceReport(@PathVariable UUID id, @RequestBody WeeklyReportData newReport) {
+	public ResponseEntity<WeeklyReportData> replaceReport(@PathVariable Integer id, @RequestBody WeeklyReportData newReport) {
 		WeeklyReportData body = this.wkReportService.replaceReport(id, newReport);
 		return new ResponseEntity<WeeklyReportData>(body, HttpStatus.ACCEPTED);
 	}
 	
 	@DeleteMapping("/removeReport/{id}")
-	public ResponseEntity<?> removeReport(@PathVariable UUID id) {
+	public ResponseEntity<?> removeReport(@PathVariable Integer id) {
 		boolean removed = this.wkReportService.removeReport(id);
 		if (removed) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);

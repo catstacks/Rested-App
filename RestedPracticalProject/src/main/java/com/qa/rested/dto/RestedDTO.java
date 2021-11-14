@@ -18,7 +18,6 @@ public final class RestedDTO implements Serializable {
 	private String password;
 	private String firstName;
 	private String lastName;
-	private String timeZone;
 
     public RestedDTO(
     		final UUID id,
@@ -28,8 +27,7 @@ public final class RestedDTO implements Serializable {
     		final String email,
     		final String password,
     		final String firstName,
-    		final String lastName,
-    		final String timeZone
+    		final String lastName
     ) 
     
     {	this.id = id;
@@ -40,7 +38,6 @@ public final class RestedDTO implements Serializable {
     	this.password = password;
     	this.firstName = firstName;
     	this.lastName = lastName;
-    	this.timeZone = timeZone;
     }
 
     public RestedDTO() {
@@ -116,13 +113,6 @@ public final class RestedDTO implements Serializable {
     }
 
 
-    public String getTimeZone() {
-        return timeZone;
-    }
-
-    public void setTimeZone(final String timeZone) {
-        this.timeZone = timeZone;
-    }
 
     @Override
     public boolean equals(final Object other) {
@@ -136,8 +126,7 @@ public final class RestedDTO implements Serializable {
                     && this.getEmail().equals(that.getEmail())
                     && this.getPassword().equals(that.getPassword())
                     && this.getFirstName().equals(that.getFirstName())
-                    && this.getLastName().equals(that.getLastName())
-                    && this.getTimeZone().equals(that.getTimeZone());   
+                    && this.getLastName().equals(that.getLastName());   
         }
         return equals;
     }

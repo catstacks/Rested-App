@@ -107,6 +107,13 @@ I expected the challenge to be difficult to complete due to the large number of 
 
 ![image](https://user-images.githubusercontent.com/61471777/141701964-47e62af4-8da5-47c2-8055-d8660efea59b.png)
 
+> **Update: database connection success (data is persisted)
+
+![image](https://user-images.githubusercontent.com/61471777/141703179-8feef483-9908-4e08-8566-665473c55ea9.png)
+
+![image](https://user-images.githubusercontent.com/61471777/141703235-7efae2a9-3b25-439b-9bd1-9258dbcce9e6.png)
+
+
 # Screenshot of your test results, including coverage report.
 
 ![image](https://user-images.githubusercontent.com/61471777/141702087-2a9caaf7-d8d0-4f93-a296-c0f4e961ec1a.png)

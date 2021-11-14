@@ -16,13 +16,9 @@ public interface RestedUserService {
 	
 	RestedUser createUser(RestedUser newUser);
 
-	List<RestedUser> getUsers();
-
-	RestedUser getUser(Integer id);
-
-	RestedUser replaceUser(Integer id, RestedUser newUser);
-
-	boolean removeUser(UUID id);
+//	List<RestedUser> getUsers();
+//
+//	RestedUser getUser(UUID id);	
 
 	RestedDTO findByEmail(String attribute);
 
@@ -37,6 +33,8 @@ public interface RestedUserService {
 	WaterConsumed replaceWaterConsumed(UUID id, WaterConsumed newWaterConsumed);
 
 	WeeklyReportData replaceReport(UUID id, WeeklyReportData newReport);
+	
+	boolean removeUser(UUID id);
 
 	boolean removeSleep(UUID id);
 

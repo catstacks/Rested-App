@@ -54,6 +54,7 @@ public class DailySleep {
 	}
 	
 	 public DailySleep() {
+		 super();
 	    }
 
 	public UUID getId() {

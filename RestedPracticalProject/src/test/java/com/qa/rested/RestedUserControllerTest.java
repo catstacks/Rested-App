@@ -1,17 +1,44 @@
 package com.qa.rested;
 
+import java.io.File;
+
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-
+import com.qa.rested.domain.RestedUser;
 import com.qa.rested.rest.RestedUserController;
 import com.qa.rested.rest.SleepController;
 
+//Junit 5 - Junit 4
+	// @BeforeAll - @BeforeClass : Needs to be a static method, this will run before
+	// everything else; here we might set up DB connections, etc.
+	// @BeforeEach - @Before : Method to run before every test, this best to setup
+	// our prereqs before testing, e.g. create an object.
+	// @AfterAll - @AfterClass : A static method, ran at the end of everything; used
+	// to disconnect or close down our components e.g. DB.close();/scanner.close();
+	// @AfterEach - @After : Method to run after every test, best used to tear-down
+	// any allocated resource post test. e.g. clearing a list, etc.
+	// @Test - @Test : A method that Junit will run, typically containing an
+	// assertion.
+	// @Disable - @Ignore : Prevents a test by running
+
+	// Failures notify an invalid test result
+	// Errors indicate an unexpected test execution
+
 public class RestedUserControllerTest {
+	
+	File fileIn;
+	
+	@BeforeAll
+	public static void beginTest() {
+		System.out.println("The test starts now");
+		System.out.println("=========================================");
+	}
 	
 	@Test
 	public void shouldCreateNewUser() {
-	    RestedUserController restedUserController = new RestedUserController();
-	    restedUserController.addUser(1, 1999-01-01, 22, 1, "test.user@domain", "password", "test", "user");
+	    RestedUser restedUser = new RestedUser();
+	    restedUser.addUser(1, "1999-01-01", 22, 1, "test.user@domain", "password", "test", "user");
 	}
 	
 	@Test

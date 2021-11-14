@@ -10,7 +10,11 @@ import java.util.UUID;
 
 public final class RestedDTO implements Serializable {
 
-    @JsonIgnore private UUID id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@JsonIgnore private UUID id;
 	private Date dob;
 	private double age;
 	private Integer sleepQuality;

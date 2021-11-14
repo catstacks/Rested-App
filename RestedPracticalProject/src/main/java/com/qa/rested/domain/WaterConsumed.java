@@ -1,7 +1,5 @@
 package com.qa.rested.domain;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -35,7 +33,7 @@ public class WaterConsumed {
     private Water water;
 
     @Column(name = "date", nullable = false)
-    private Date date;
+    private String date;
 
     @Column(name = "serving_size", length = 10, nullable = false)
     @Enumerated(EnumType.STRING)
@@ -48,14 +46,14 @@ public class WaterConsumed {
 			final Integer id,
 			final RestedUser user,
 			final Water water,
-			final Date date,
+			final String date,
 			final ServingSize servingType,
 			final Double servingAmount) {
 		
 		this.id = id;
 		this.user = user;
 		this.water = water;
-		this.date = (Date) date.clone();
+		this.date = date;
 		this.servingType = servingType;
 		this.servingAmount = servingAmount;
 	}
@@ -87,11 +85,11 @@ public class WaterConsumed {
 		this.water = water;
 	}
 
-	public Date getDate() {
+	public String getString() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setString(String date) {
 		this.date = date;
 	}
 

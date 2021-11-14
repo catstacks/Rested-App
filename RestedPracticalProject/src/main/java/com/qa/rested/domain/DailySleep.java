@@ -9,7 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import java.sql.Date;
 
 @Entity
 @Table(name = "daily_sleep", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "journal_id", "date"})
@@ -30,7 +29,7 @@ public class DailySleep {
     private DreamJournal dreamjournal;
 
     @Column(name = "date", nullable = false)
-    private Date date;
+    private String date;
     
     @Column(name = "hours", nullable = false)
     private Integer hours;
@@ -42,14 +41,14 @@ public class DailySleep {
 			final Integer id,
 			final RestedUser user,
 			final DreamJournal dreamjournal,
-			final Date date,
+			final String date,
 			final Integer hours,
 			final Integer minutes) {
 		
 		this.id = id;
 		this.user = user;
 		this.dreamjournal = dreamjournal;
-		this.date = (Date) date.clone();
+		this.date = date;
 		this.hours = hours;
 		this.minutes = minutes;
 	}
@@ -82,11 +81,11 @@ public class DailySleep {
 		this.dreamjournal = dreamjournal;
 	}
 
-	public Date getDate() {
+	public String getString() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setString(String date) {
 		this.date = date;
 	}
 

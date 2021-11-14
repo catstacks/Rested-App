@@ -1,6 +1,5 @@
 package com.qa.rested.domain;
 
-import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,7 +21,7 @@ public class RestedUser {
 	private Integer id;
 	
     @Column(name = "dob", nullable = false)
-    private Date dob;
+    private String dob;
 
     @Column(name = "age", nullable = false)
     private double age;
@@ -56,7 +55,7 @@ public class RestedUser {
     
     public RestedUser(
     		final Integer id,
-    		final Date dob,
+    		final String dob,
     		final double age,
     		final Integer sleepQuality,
     		final String email,
@@ -65,7 +64,7 @@ public class RestedUser {
 			final String lastName) {
 		super();
 		this.id = id;
-		this.dob = (Date) dob.clone();
+		this.dob = dob;
 		this.age = age;
 		this.sleepQuality = sleepQuality.intValue();
 		this.email = email;
@@ -87,11 +86,11 @@ public class RestedUser {
 		this.id = id;
 	}
 
-	public Date getDob() {
+	public String getDob() {
 		return dob;
 	}
 
-	public void setDob(Date dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 

@@ -2,16 +2,22 @@ package com.qa.rested;
 
 import org.junit.jupiter.api.Test;
 
+
+import com.qa.rested.rest.RestedUserController;
+import com.qa.rested.rest.SleepController;
+
 public class RestedUserControllerTest {
 	
 	@Test
 	public void shouldCreateNewUser() {
-	    fail("Fail");
+	    RestedUserController restedUserController = new RestedUserController();
+	    restedUserController.addUser(1, 1999-01-01, 22, 1, "test.user@domain", "password", "test", "user");
 	}
 	
 	@Test
 	public void shouldCreateNewSleep() {
-	    fail("Fail");
+		 SleepController sleepController = new SleepController();
+		 SleepController.addSleep(1, 1999-01-01, 22, 1, "test.user@domain", "password", "test", "user");
 	}
 	
 	@Test

@@ -1,7 +1,5 @@
 package com.qa.rested.domain;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,7 +24,7 @@ public class WeeklyReportData {
 	    private RestedUser user;
 
 	    @Column(name = "date", nullable = false)
-	    private Date date;
+	    private String date;
 
 	    @Column(name = "weekly_sleep", nullable = false)
 	    private Double weeklySleep = 0.0;
@@ -40,14 +38,14 @@ public class WeeklyReportData {
 		public WeeklyReportData(
 				final Integer id,
 				final RestedUser user,
-				final Date date,
+				final String date,
 				final Double weeklySleep,
 				final Double weeklyWater,
 				final Double weeklyScreenTime) {
 			
 			this.id = id;
 			this.user = user;
-			this.date = (Date) date.clone();
+			this.date = date;
 			this.weeklySleep = weeklySleep;
 			this.weeklyWater = weeklyWater;
 			this.weeklyScreenTime = weeklyScreenTime;
@@ -72,11 +70,11 @@ public class WeeklyReportData {
 			this.user = user;
 		}
 
-		public Date getDate() {
+		public String getString() {
 			return date;
 		}
 
-		public void setDate(Date date) {
+		public void setString(String date) {
 			this.date = date;
 		}
 
